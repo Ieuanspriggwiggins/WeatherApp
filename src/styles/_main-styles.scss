@@ -12,10 +12,38 @@
   justify-content: center;
 }
 
-.main-info-section{
-  width: 85%;
-  margin: 40px auto 0 auto;
+#day-selection-container{
   display: grid;
-  grid-template-columns: 35% 65%;
-}
+  grid-template-columns: repeat(5, auto);
+  .weather-tab{
+    text-align: center;
+    padding: 15px 0;
+    background-color: var(--light-pink);
+    color: black;
+    cursor: pointer;
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    &:hover{
+      background-color: var(--orange-brown);
+      color: white;
+    }
+  }
+  :first-child{
+    border-left: none;
+  }
+  :last-child{
+    border-right: none;
+  }
+  @media screen and (max-width: 1025px){
+    grid-template-columns: auto;
+    .weather-tab{
+      border-left: none;
+      border-right: none;
+      border-bottom: 1px solid grey;
+    }
+  }
 
+  .selected-weather-tab{
+
+  }
+}
