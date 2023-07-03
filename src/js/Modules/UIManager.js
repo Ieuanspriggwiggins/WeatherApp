@@ -44,6 +44,7 @@ function updateWeatherInformation()  {
  */
 function setupTabs() {
     let weatherDays = WeatherManager.getWeatherObjects();
+    tabDayContainer.innerHTML = '';
     for(let day in weatherDays){
         let tab = ElementGenerator.generateWeatherTab(weatherDays[day], day);
 
