@@ -2,6 +2,10 @@
 const _weatherKey = '522d203393ae44c29f695112230307';
 let _weatherObjects = {};
 let _locationObject;
+let _selectedWeatherObject;
+
+//Keeps track of the current temperature type - defaults as C when application opens
+let _currentTemperatureType = 'c';
 
 const weatherFactory = (data) => {
     return {data};
@@ -14,7 +18,7 @@ const weatherFactory = (data) => {
  * @returns {Promise<any>}
  */
 const fetchWeatherData = async (locationName) => {
-    const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${_weatherKey}&q=${locationName}&days=5`);
+    const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${_weatherKey}&q=${locationName}&alerts=yes&days=5&aqi=yes`);
     await request.json().then((response) => {
         createWeatherObjects(response);
     });
@@ -48,8 +52,45 @@ const getWeatherObjects = () => {
     return _weatherObjects;
 }
 
+/**
+ * Returns a weather object by the ID
+ * @param id
+ * @returns {*}
+ */
 const getWeatherObjectById = (id) => {
     return _weatherObjects[id];
+}
+
+/**
+ * Returns the ID of the selected weather object
+ * @returns {*}
+ */
+const getSelectedWeatherObjectId = () => {
+    return _selectedWeatherObject;
+}
+
+/**
+ * Returns the object of the selected weather object
+ * @returns {*}
+ */
+const getSelectedWeatherObject = () => {
+    return _weatherObjects[_selectedWeatherObject];
+}
+
+/**
+ * Sets the current selected weather object ID
+ * @param id
+ */
+const setSelectedWeatherObject = (id) => {
+    _selectedWeatherObject = id;
+}
+
+const getCurrentTemperatureType = () => {
+    return _currentTemperatureType;
+}
+
+const setCurrentTemperatureType = (type) => {
+    _currentTemperatureType = type;
 }
 
 export {
@@ -57,4 +98,9 @@ export {
     getLocationObject,
     getWeatherObjects,
     getWeatherObjectById,
+    setSelectedWeatherObject,
+    getSelectedWeatherObject,
+    getSelectedWeatherObjectId,
+    getCurrentTemperatureType,
+    setCurrentTemperatureType
 }

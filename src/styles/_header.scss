@@ -1,7 +1,7 @@
 header {
   background-color: var(--raisin-black);
   color: white;
-  padding: 30px;
+  padding: 30px 0;
   font-weight: 300;
   i{
     font-size: 42px;
@@ -12,7 +12,7 @@ header {
 }
 
 .location-enter-div{
-  margin: auto 0 auto 100px;
+  margin: auto 0 auto 0;
 }
 
 #location-input{
@@ -64,5 +64,18 @@ header {
   background-color: var(--light-pink);
   cursor: pointer;
   color: black;
+}
+
+.temperature-control-div{
+  display: flex;
+  flex-direction: column;
+  #switch-temp-type-btn{
+    width: 100px;
+    height: 30px;
+  }
+  @media screen and (max-width: 769px){
+    margin-top: 15px;
+    flex-direction: row;
+  }
 }
 

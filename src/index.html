@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <header class="main-header flex-row">
+        <header class="main-header flex-row flex-space">
             <div class="flex-row header-title-container">
                 <i class="fa-solid fa-cloud flex-column flex-center" style="color: #ffbcb5;"></i><h1>Your Weather</h1>
             </div>
@@ -19,10 +19,31 @@
                 <input id="location-input" placeholder="Enter Location" type="text">
                 <input type="button" value="Submit" id="location-input-submit-btn">
             </div>
+            <div class="flex-center temperature-control-div">
+                <button id="switch-temp-type-btn">
+                    <span id="switch-c">C&deg;</span>/
+                    <span id="switch-f">F&deg;</span>
+                </button>
+            </div>
         </header>
 
         <div id="day-selection-container" class="day-selection-container">
 
         </div>
+
+        <main>
+            <div class="main-display-top">
+                <div class="display-quick-info">
+                    <span class="large-text text-center block" id="quick-info-city"></span>
+                    <span class="medium-text text-center block" id="quick-info-weather"></span>
+                    <span class="main-day-temp-display text-center block temp-c" id="quick-info-temp"></span>
+                </div>
+                <div>
+                    <div class="hourly-display" id="hourly-display">
+
+                    </div>
+                </div>
+            </div>
+        </main>
     </body>
 </html>
