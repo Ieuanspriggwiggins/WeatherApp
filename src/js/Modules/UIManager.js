@@ -116,6 +116,7 @@ function createWeatherUI() {
 
 //Elements that display the quick information on the left side on the page.
 const quickInfoCityDisplay = document.getElementById('quick-info-city');
+const quickInfoCountryDisplay = document.getElementById('quick-info-country');
 const quickInfoWeatherDisplay = document.getElementById('quick-info-weather');
 const quickInfoTempDisplay = document.getElementById('quick-info-temp');
 
@@ -126,9 +127,11 @@ const quickInfoTempDisplay = document.getElementById('quick-info-temp');
  */
 function updateQuickInfo(data, locationObj) {
     const cityName = locationObj.name;
+    const countryName = locationObj.country;
     let averageTemp = WeatherManager.getCurrentTemperatureType() === 'c' ? data.day.avgtemp_c : data.day.avgtemp_f;
     const weatherConditionText = data.day.condition.text;
     quickInfoCityDisplay.innerHTML = cityName;
+    quickInfoCountryDisplay.innerHTML = countryName;
     quickInfoWeatherDisplay.innerHTML = weatherConditionText;
     quickInfoTempDisplay.innerHTML = averageTemp + '&deg;';
 }
