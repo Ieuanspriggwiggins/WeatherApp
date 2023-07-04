@@ -133,7 +133,7 @@ function updateQuickInfo(data, locationObj) {
     quickInfoCityDisplay.innerHTML = cityName;
     quickInfoCountryDisplay.innerHTML = countryName;
     quickInfoWeatherDisplay.innerHTML = weatherConditionText;
-    quickInfoTempDisplay.innerHTML = averageTemp + '&deg;';
+    quickInfoTempDisplay.innerHTML = averageTemp + '°' + WeatherManager.getCurrentTemperatureType().toUpperCase();
 }
 
 

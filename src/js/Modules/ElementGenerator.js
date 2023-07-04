@@ -55,9 +55,13 @@ const generateBasicHour = (isNow, data, hour) => {
     let url = data.condition.icon;
     hourlyInfoImage.src = url.replace('64x64', '128x128'); //Get higher resolution image
 
+    hourlyInfoImage.draggable = false;
+
     const hourlyInfoTemperature = document.createElement('span');
     hourlyInfoTemperature.classList.add('hourly-info-temperature');
-    hourlyInfoTemperature.innerText = WeatherManager.getCurrentTemperatureType() === 'c' ? Math.round(data.temp_c) : Math.round(data.temp_f);
+    hourlyInfoTemperature.innerText = WeatherManager.getCurrentTemperatureType() === 'c'
+        ? Math.round(data.temp_c) + '°' + WeatherManager.getCurrentTemperatureType().toUpperCase()
+        : Math.round(data.temp_f) + '°' + WeatherManager.getCurrentTemperatureType().toUpperCase();
 
     container.appendChild(hourlyInfoTime);
     container.appendChild(hourlyInfoRainChance);

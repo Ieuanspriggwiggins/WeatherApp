@@ -73,6 +73,8 @@
 }
 
 main{
+
+
   max-width: 95%;
   margin: 25px auto;
   .main-display-top{
@@ -121,7 +123,7 @@ main{
       justify-content: center;
       img{
         width: 75px;
-        margin: 10px 0;
+        margin: 10px auto;
       }
     }
     .hourly-info-time{
@@ -131,11 +133,6 @@ main{
     .hourly-info-rain-chance{
       color: #0091ff;
       font-weight: bold;
-    }
-    .hourly-info-temperature{
-      &::after{
-        content: '\00b0';
-      }
     }
   }
 }
