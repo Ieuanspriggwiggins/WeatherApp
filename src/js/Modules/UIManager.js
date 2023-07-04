@@ -128,7 +128,7 @@ const quickInfoTempDisplay = document.getElementById('quick-info-temp');
 function updateQuickInfo(data, locationObj) {
     const cityName = locationObj.name;
     const countryName = locationObj.country;
-    let averageTemp = WeatherManager.getCurrentTemperatureType() === 'c' ? data.day.avgtemp_c : data.day.avgtemp_f;
+    let averageTemp = WeatherManager.getCurrentTemperatureType() === 'c' ? Math.round(data.day.avgtemp_c) : Math.round(data.day.avgtemp_f);
     const weatherConditionText = data.day.condition.text;
     quickInfoCityDisplay.innerHTML = cityName;
     quickInfoCountryDisplay.innerHTML = countryName;
