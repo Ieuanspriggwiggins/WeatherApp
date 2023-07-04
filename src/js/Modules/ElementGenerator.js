@@ -5,9 +5,9 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 
 const getFormattedTime = (time) => {
     if(Number(time) < 12){
-        return String(time + 'am');
+        return String(time + 'AM');
     }else{
-        return String(time + 'pm');
+        return String(time + 'PM');
     }
 }
 
