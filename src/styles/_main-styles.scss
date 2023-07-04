@@ -20,6 +20,14 @@
   font-size: 24px;
 }
 
+.medium-large-text{
+  font-size: 28px;
+}
+
+.small-text{
+  font-size: 16px;
+}
+
 .text-center{
   text-align: center;
 }
@@ -41,18 +49,10 @@
     background-color: var(--light-pink);
     color: black;
     cursor: pointer;
-    border-right: 1px solid grey;
-    border-left: 1px solid grey;
     &:hover{
       background-color: var(--orange-brown);
       color: white;
     }
-  }
-  :first-child{
-    border-left: none;
-  }
-  :last-child{
-    border-right: none;
   }
   @media screen and (max-width: 1025px){
     grid-template-columns: auto;
@@ -90,6 +90,7 @@ main{
     span{
       margin: 10px 0;
     }
+
   }
   .main-day-temp-display{
     font-size: 100px;
