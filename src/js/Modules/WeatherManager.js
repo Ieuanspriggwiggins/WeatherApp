@@ -93,6 +93,10 @@ const setCurrentTemperatureType = (type) => {
     _currentTemperatureType = type;
 }
 
+const roundToTwoDecimal = (float) => {
+    return Math.round(float * 100) / 100
+}
+
 export {
     fetchWeatherData,
     getLocationObject,
@@ -102,5 +106,6 @@ export {
     getSelectedWeatherObject,
     getSelectedWeatherObjectId,
     getCurrentTemperatureType,
-    setCurrentTemperatureType
+    setCurrentTemperatureType,
+    roundToTwoDecimal
 }

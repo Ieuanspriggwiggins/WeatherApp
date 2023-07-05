@@ -110,8 +110,9 @@ function createWeatherUI() {
     const weatherObject = WeatherManager.getSelectedWeatherObject();
     const locationObject = WeatherManager.getLocationObject();
     updateQuickInfo(weatherObject.data, locationObject);
-    updateHourlyDisplay(weatherObject.data);
+    updateHourlyDisplay(weatherObject.data, locationObject);
     updateAstronomicalSection(weatherObject.data);
+    updateAirQualitySection(weatherObject.data);
 }
 
 
@@ -144,10 +145,14 @@ const basicHourDisplay = document.getElementById('hourly-display');
  * Updates the hourly sections on the page.
  * @param data
  */
-function updateHourlyDisplay(data) {
+function updateHourlyDisplay(data, locationData) {
     basicHourDisplay.innerHTML = ''; //Clear the display
     let hourlyData = data.hour;
-    let currentHour = new Date().getHours();
+    let timezoneId = locationData.tz_id;
+
+    let localTime = new Date(new Date().toLocaleString('en-GB', {timeZone: timezoneId}));
+
+    let currentHour = localTime.getHours();
 
     for(let hour in hourlyData){
         let element;
@@ -187,4 +192,48 @@ function updateAstronomicalSection(data) {
     astroMoonsetField.innerText = astroData.moonset;
     astroMoonphaseField.innerText = astroData.moon_phase;
     astroMoonIlluminationField.innerText = astroData.moon_illumination + '%';
+}
+
+/**
+ * Returns string for the index table for the infra standard
+ * @param number
+ * @returns {string}
+ */
+function getGbInfraIndexText(number) {
+    if(number < 36){
+        return 'Low';
+    }
+    else if(number < 54){
+        return 'Moderate'
+    }
+    else if(number < 71){
+        return 'High';
+    }
+    else{
+        return 'Very High';
+    }
+}
+
+const carbonMonoxideFiled = document.getElementById('carbon-monoxide-data');
+const ozoneField = document.getElementById('ozone-data');
+const nitrogenField = document.getElementById('nitrogen-data');
+const sulphurField = document.getElementById('sulphur-data');
+const pm2Field = document.getElementById('pm2-data');
+const pm10Field = document.getElementById('pm10-data');
+const usEpaIndexField = document.getElementById('us-epa-data');
+const gbDefraIndexField = document.getElementById('gb-defra-data');
+
+const us_epa_obj = {1: 'Good', 2: 'Moderate', 3: 'Unhealthy', 4: 'Unhealthy', 5: 'Very Unhealthy', 6: 'Hazardous'};
+
+function updateAirQualitySection(data) {
+    let airQualityData = data.day.air_quality;
+    carbonMonoxideFiled.innerText = WeatherManager.roundToTwoDecimal(airQualityData.co);
+    ozoneField.innerText = WeatherManager.roundToTwoDecimal(airQualityData.o3);
+    nitrogenField.innerText = WeatherManager.roundToTwoDecimal(airQualityData.no2);
+    sulphurField.innerText = WeatherManager.roundToTwoDecimal(airQualityData.so2);
+    pm2Field.innerText = WeatherManager.roundToTwoDecimal(airQualityData.pm2_5);
+    pm10Field.innerText = WeatherManager.roundToTwoDecimal(airQualityData.pm10);
+    usEpaIndexField.innerText = airQualityData['us-epa-index'] + ' - ' +  us_epa_obj[airQualityData['us-epa-index']];
+    gbDefraIndexField.innerText = airQualityData['gb-defra-index'] + ' - ' + getGbInfraIndexText(Number(airQualityData['gb-defra-index']));
+
 }

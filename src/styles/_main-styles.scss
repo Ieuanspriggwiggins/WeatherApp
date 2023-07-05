@@ -41,7 +41,7 @@
 }
 
 .section{
-  margin-top: 150px;
+  margin-top: 20px;
 }
 
 .full-width{
@@ -59,6 +59,7 @@
 .section-title{
   text-align: center;
   font-size: 36px;
+  margin-bottom: 5rem;
 }
 
 .padded-section{
@@ -73,9 +74,22 @@
 
 .data-section{
   text-align: center;
-  margin: 15px 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.four-grid{
   display: grid;
   grid-row-gap: 80px;
+  grid-template-columns: 25% 25% 25% 25%;
+  @media screen and (max-width: 769px){
+    grid-template-columns: 50% 50%;
+  }
+}
+
+.three-grid{
+  display: grid;
+  grid-row-gap: 100px;
   grid-template-columns: 33% 33% 33%;
   @media screen and (max-width: 769px){
     grid-template-columns: 50% 50%;
@@ -90,12 +104,14 @@
     margin-bottom: 15px;
   }
   span{
-    margin: 5px 0;
+    margin-top: 5px;
   }
 }
 
 .data-section-title{
   font-size: 18px;
+  max-width: 50%;
+  margin: auto;
 }
 
 .data-section-data{
@@ -200,4 +216,34 @@ main{
 #switch-temp-type-btn{
   border: none;
   height: 20px;
+}
+
+#carbon-monoxide-data::after{
+  content: 'μg/m3';
+  margin-left: 5px;
+}
+
+#ozone-data::after{
+  content: 'μg/m3';
+  margin-left: 5px;
+}
+
+#nitrogen-data::after{
+  content: 'μg/m3';
+  margin-left: 5px;
+}
+
+#sulphur-data::after{
+  content: 'μg/m3';
+  margin-left: 5px;
+}
+
+#pm2-data::after{
+  content: 'μg/m3';
+  margin-left: 5px;
+}
+
+#pm10-data::after{
+  content: 'μg/m3';
+  margin-left: 5px;
 }
