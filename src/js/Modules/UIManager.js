@@ -64,43 +64,56 @@ function submitLocation() {
  * Updates the weather information on the page.
  */
 function updateWeatherInformation()  {
-    setupTabs();
+    setupWeatherSelection();
     createWeatherUI();
 }
 
-/**
- * Generates and places the days in the tabs container
- */
-function setupTabs() {
-    let weatherDays = WeatherManager.getWeatherObjects();
-    tabDayContainer.innerHTML = '';
-    for(let day in weatherDays){
-        let tab = ElementGenerator.generateWeatherTab(weatherDays[day], day);
-        tab.addEventListener('click', onTabClick);
-        tabDayContainer.appendChild(tab);
-    }
+const changeDayPrevBtn = document.getElementById('change-day-prev');
+const changeDayCurrent = document.getElementById('change-day-current');
+const changeDayNextBtn = document.getElementById('change-day-next');
 
-    //Set the selected tab to the first one
-    let first = document.querySelector('.weather-tab');
-    first.classList.add('selected-weather-tab');
+function setupWeatherSelection() {
+    changeDayCurrent.setAttribute('data-currentid', '0');
     WeatherManager.setSelectedWeatherObject(0);
+    updateCurrentDate();
 }
 
-/**
- * Runs when a weather day tab is clicked. Will set the ID to the one that has been clicked, will then remove the selected class
- * from all existing weather tabs, adds the class to the one clicked and sets the currently selected weather object.
- * @param event
- */
-function onTabClick(event) {
-    let tabs = document.getElementsByClassName('weather-tab');
-    let id = event.target.closest('.weather-tab').getAttribute('data-id');
-    let object = WeatherManager.getWeatherObjectById(id);
-    for(let i = 0; i < tabs.length; i++){
-        tabs[i].classList.remove('selected-weather-tab');
+changeDayPrevBtn.addEventListener('click', changeSelectedDay);
+changeDayNextBtn.addEventListener('click', changeSelectedDay);
+
+function changeSelectedDay(event) {
+    let currentSelected = Number(changeDayCurrent.getAttribute('data-currentid'));
+    if(event.target === changeDayPrevBtn && !Number(currentSelected) < 1){
+        changeDayCurrent.setAttribute('data-currentid', String(currentSelected - 1));
     }
-    event.target.closest('.weather-tab').classList.add('selected-weather-tab');
+    else if(Object.keys(WeatherManager.getWeatherObjects()).length - 1 > currentSelected && event.target === changeDayNextBtn) {
+        changeDayCurrent.setAttribute('data-currentid', String(currentSelected + 1));
+    }
+    updateCurrentDate();
+}
+
+function updateCurrentDate() {
+    let id = Number(changeDayCurrent.getAttribute('data-currentid'));
     WeatherManager.setSelectedWeatherObject(id);
     createWeatherUI();
+
+    let weatherObj = WeatherManager.getSelectedWeatherObject();
+    let date;
+
+
+    const tempDate = weatherObj.data.date_epoch;
+    let newDate = new Date(tempDate * 1000);
+
+    // let day = newDate.getDate();
+
+    let day = String(newDate.getDate()).length === 1 ? '0' + newDate.getDate() : newDate.getDate();
+    let month = String(newDate.getMonth()).length === 1 ? '0' + newDate.getMonth() : newDate.getMonth();
+    const year = newDate.getFullYear();
+
+    date = day + '/' + month + '/' + year;
+
+
+    changeDayCurrent.innerText = date;
 }
 
 /**

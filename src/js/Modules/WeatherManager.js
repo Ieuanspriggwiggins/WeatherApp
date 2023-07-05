@@ -1,3 +1,5 @@
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const _weatherKey = '522d203393ae44c29f695112230307';
 let _weatherObjects = {};
@@ -97,6 +99,14 @@ const roundToTwoDecimal = (float) => {
     return Math.round(float * 100) / 100
 }
 
+const getDayArray = () => {
+    return days;
+}
+
+const getMonthArray = () => {
+    return monthNames;
+}
+
 export {
     fetchWeatherData,
     getLocationObject,
@@ -108,4 +118,7 @@ export {
     getCurrentTemperatureType,
     setCurrentTemperatureType,
     roundToTwoDecimal,
+    getDayArray,
+
+
 }

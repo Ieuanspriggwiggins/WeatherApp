@@ -96,6 +96,20 @@
   }
 }
 
+#day-selection-container{
+  text-align: center;
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: lighter;
+  i{
+    cursor: pointer;
+  }
+  #change-day-current{
+    margin: 15px;
+    min-width: 100px;
+  }
+}
+
 .data-item{
   display: flex;
   flex-direction: column;
@@ -118,38 +132,6 @@
   font-weight: lighter;
 }
 
-
-#day-selection-container{
-  display: grid;
-  grid-template-columns: repeat(5, 20%);
-  .weather-tab{
-    text-align: center;
-    padding: 15px 0;
-    background-color: var(--light-pink);
-    color: black;
-    cursor: pointer;
-    &:hover{
-      background-color: var(--orange-brown);
-      color: white;
-    }
-  }
-  @media screen and (max-width: 1025px){
-    grid-template-columns: auto;
-    .weather-tab{
-      border-left: none;
-      border-right: none;
-      border-bottom: 1px solid grey;
-    }
-  }
-
-  .selected-weather-tab{
-    background-color: var(--raisin-black);
-    color: white;
-    &:hover{
-      background-color: var(--raisin-black);
-    }
-  }
-}
 
 main{
   margin: 25px auto;
