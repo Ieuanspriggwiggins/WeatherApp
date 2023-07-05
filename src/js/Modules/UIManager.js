@@ -121,6 +121,7 @@ const quickInfoCityDisplay = document.getElementById('quick-info-city');
 const quickInfoCountryDisplay = document.getElementById('quick-info-country');
 const quickInfoWeatherDisplay = document.getElementById('quick-info-weather');
 const quickInfoTempDisplay = document.getElementById('quick-info-temp');
+const quickInfoTime = document.getElementById('quick-info-time');
 
 /**
  * Updates the quick info on the top left side of the page.
@@ -132,10 +133,22 @@ function updateQuickInfo(data, locationObj) {
     const countryName = locationObj.country;
     let averageTemp = WeatherManager.getCurrentTemperatureType() === 'c' ? Math.round(data.day.avgtemp_c) : Math.round(data.day.avgtemp_f);
     const weatherConditionText = data.day.condition.text;
+
+    const timezoneId = locationObj.tz_id;
+    const localTime = new Date(new Date().toLocaleString('en-GB', {timeZone: timezoneId}));
+    let timeHours = String(localTime.getHours());
+    let timeMinutes = String(localTime.getMinutes());
+    if(timeMinutes.length === 1){
+        timeMinutes = '0' + timeMinutes;
+    }
+
+    let time = timeHours + ':' +  timeMinutes;
+
     quickInfoCityDisplay.innerHTML = cityName;
     quickInfoCountryDisplay.innerHTML = countryName;
     quickInfoWeatherDisplay.innerHTML = weatherConditionText;
     quickInfoTempDisplay.innerHTML = averageTemp + '°' + WeatherManager.getCurrentTemperatureType().toUpperCase();
+    quickInfoTime.innerText = time;
 }
 
 

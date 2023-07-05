@@ -107,5 +107,5 @@ export {
     getSelectedWeatherObjectId,
     getCurrentTemperatureType,
     setCurrentTemperatureType,
-    roundToTwoDecimal
+    roundToTwoDecimal,
 }

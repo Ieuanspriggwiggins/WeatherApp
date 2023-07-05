@@ -3,13 +3,6 @@ import * as WeatherManager from './WeatherManager';
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-const getFormattedTime = (time) => {
-    if(Number(time) < 12){
-        return String(time + 'AM');
-    }else{
-        return String(time + 'PM');
-    }
-}
 
 const generateWeatherTab = (obj, id) => {
     const data = obj.data;
@@ -44,7 +37,7 @@ const generateBasicHour = (isNow, data, hour) => {
 
     const hourlyInfoTime = document.createElement('span');
     hourlyInfoTime.classList.add('hourly-info-time');
-    hourlyInfoTime.innerText = getFormattedTime(hour);
+    hourlyInfoTime.innerText = hour + ':00';
 
     const hourlyInfoRainChance = document.createElement('span');
     hourlyInfoRainChance.classList.add('hourly-info-rain-chance');
