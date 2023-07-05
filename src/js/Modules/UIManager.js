@@ -65,6 +65,7 @@ function submitLocation() {
  */
 function updateWeatherInformation()  {
     setupTabs();
+    createWeatherUI();
 }
 
 /**
@@ -83,7 +84,6 @@ function setupTabs() {
     let first = document.querySelector('.weather-tab');
     first.classList.add('selected-weather-tab');
     WeatherManager.setSelectedWeatherObject(0);
-    createWeatherUI();
 }
 
 /**
@@ -217,7 +217,7 @@ function getGbInfraIndexText(number) {
         return 'Low';
     }
     else if(number < 54){
-        return 'Moderate'
+        return 'Moderate';
     }
     else if(number < 71){
         return 'High';
@@ -248,5 +248,4 @@ function updateAirQualitySection(data) {
     pm10Field.innerText = WeatherManager.roundToTwoDecimal(airQualityData.pm10);
     usEpaIndexField.innerText = airQualityData['us-epa-index'] + ' - ' +  us_epa_obj[airQualityData['us-epa-index']];
     gbDefraIndexField.innerText = airQualityData['gb-defra-index'] + ' - ' + getGbInfraIndexText(Number(airQualityData['gb-defra-index']));
-
 }
