@@ -111,6 +111,7 @@ function createWeatherUI() {
     const locationObject = WeatherManager.getLocationObject();
     updateQuickInfo(weatherObject.data, locationObject);
     updateHourlyDisplay(weatherObject.data);
+    updateAstronomicalSection(weatherObject.data);
 }
 
 
@@ -165,4 +166,25 @@ function updateHourlyDisplay(data) {
             basicHourDisplay.appendChild(element);
         }
     }
+}
+
+const astroSunriseField = document.getElementById('sunrise-data');
+const astroSunsetField = document.getElementById('sunset-data');
+const astroMoonriseField = document.getElementById('moonrise-data');
+const astroMoonsetField = document.getElementById('moonrise-data');
+const astroMoonphaseField = document.getElementById('moonphase-data');
+const astroMoonIlluminationField = document.getElementById('moonillumination-data');
+
+/**
+ * Updates the astronomical section
+ * @param data
+ */
+function updateAstronomicalSection(data) {
+    let astroData = data.astro;
+    astroSunriseField.innerText = astroData.sunrise;
+    astroSunsetField.innerText = astroData.sunset;
+    astroMoonriseField.innerText = astroData.moonrise;
+    astroMoonsetField.innerText = astroData.moonset;
+    astroMoonphaseField.innerText = astroData.moon_phase;
+    astroMoonIlluminationField.innerText = astroData.moon_illumination + '%';
 }

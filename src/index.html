@@ -36,16 +36,53 @@
         </div>
 
         <main>
-            <div class="main-display-top">
-                <div class="display-quick-info">
-                    <span class="large-text text-center block" id="quick-info-city"></span>
-                    <span class="small-text text-center block" id="quick-info-country"></span>
-                    <span class="medium-large-text text-center block" id="quick-info-weather"></span>
-                    <span class="main-day-temp-display text-center block temp-c" id="quick-info-temp"></span>
+            <div class="contained">
+                <div class="main-display-top">
+                    <div class="display-quick-info">
+                        <span class="large-text text-center block" id="quick-info-city"></span>
+                        <span class="small-text text-center block" id="quick-info-country"></span>
+                        <span class="medium-large-text text-center block" id="quick-info-weather"></span>
+                        <span class="main-day-temp-display text-center block temp-c" id="quick-info-temp"></span>
+                    </div>
+                    <div>
+                        <div class="hourly-display scrollable" id="hourly-display"></div>
+                    </div>
                 </div>
-                <div>
-                    <div class="hourly-display scrollable" id="hourly-display">
-
+            </div>
+            <div class="section full-width dark-bg padded-section">
+                <div class="contained white-font">
+                    <h2 class="section-title">Astronomical</h2>
+                    <div class="data-section">
+                        <div class="data-item">
+                            <i class="fa-solid fa-sun" style="color: #ffffff;"></i>
+                            <span class="data-section-title">Sunrise</span>
+                            <span class="data-section-data" id="sunrise-data">06:47</span>
+                        </div>
+                        <div class="data-item">
+                            <i class="fa-regular fa-sun" style="color: #ffffff;"></i>
+                            <span class="data-section-title">Sunset</span>
+                            <span class="data-section-data" id="sunset-data">06:47</span>
+                        </div>
+                        <div class="data-item">
+                            <i class="fa-solid fa-moon" style="color: #ffffff;"></i>
+                            <span class="data-section-title">Moonrise</span>
+                            <span class="data-section-data" id="moonrise-data">06:47</span>
+                        </div>
+                        <div class="data-item">
+                            <i class="fa-regular fa-moon" style="color: #ffffff;"></i>
+                            <span class="data-section-title">Moonset</span>
+                            <span class="data-section-data" id="moonset-data">06:47</span>
+                        </div>
+                        <div class="data-item">
+                            <i class="fa-solid fa-mountain-sun" style="color: #ffffff;"></i>
+                            <span class="data-section-title">Moon Phase</span>
+                            <span class="data-section-data" id="moonphase-data">06:47</span>
+                        </div>
+                        <div class="data-item">
+                            <i class="fa-solid fa-circle-dot" style="color: #ffffff;"></i>
+                            <span class="data-section-title">Moon Illumination</span>
+                            <span class="data-section-data" id="moonillumination-data">06:47</span>
+                        </div>
                     </div>
                 </div>
             </div>
