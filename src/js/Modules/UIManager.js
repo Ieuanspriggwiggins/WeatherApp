@@ -11,9 +11,22 @@ const temperatureChangeBtn = document.getElementById('switch-temp-type-btn');
 const switchC = document.getElementById('switch-c');
 const switchF = document.getElementById('switch-f');
 
-//Initialize condition
-switchC.style.fontWeight = 'bold';
-switchF.style.fontWeight = 'normal';
+if(localStorage.getItem('temp_type')){
+    WeatherManager.setCurrentTemperatureType(localStorage.getItem('temp_type'));
+    if(localStorage.getItem('temp_type') === 'c'){
+        WeatherManager.setCurrentTemperatureType('c')
+        switchC.style.fontWeight = 'bold';
+        switchF.style.fontWeight = 'normal';
+    }else{
+        WeatherManager.setCurrentTemperatureType('f');
+        switchF.style.fontWeight = 'bold';
+        switchC.style.fontWeight = 'normal';
+    }
+}else{
+    WeatherManager.setCurrentTemperatureType('c');
+    switchC.style.fontWeight = 'bold';
+    switchF.style.fontWeight = 'normal';
+}
 
 temperatureChangeBtn.addEventListener('click', () => {
     if(WeatherManager.getCurrentTemperatureType() === 'c'){
@@ -25,7 +38,7 @@ temperatureChangeBtn.addEventListener('click', () => {
         switchC.style.fontWeight = 'bold';
         switchF.style.fontWeight = 'normal';
     }
-
+    localStorage.setItem('temp_type', WeatherManager.getCurrentTemperatureType());
     createWeatherUI();
 });
 
@@ -107,7 +120,7 @@ function updateCurrentDate() {
     // let day = newDate.getDate();
 
     let day = String(newDate.getDate()).length === 1 ? '0' + newDate.getDate() : newDate.getDate();
-    let month = String(newDate.getMonth()).length === 1 ? '0' + newDate.getMonth() : newDate.getMonth();
+    let month = String(newDate.getMonth()).length === 1 ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1);
     const year = newDate.getFullYear();
 
     date = day + '/' + month + '/' + year;
@@ -127,7 +140,6 @@ function createWeatherUI() {
     updateAstronomicalSection(weatherObject.data);
     updateAirQualitySection(weatherObject.data);
 }
-
 
 //Elements that display the quick information on the left side on the page.
 const quickInfoCityDisplay = document.getElementById('quick-info-city');
@@ -163,7 +175,6 @@ function updateQuickInfo(data, locationObj) {
     quickInfoTempDisplay.innerHTML = averageTemp + '°' + WeatherManager.getCurrentTemperatureType().toUpperCase();
     quickInfoTime.innerText = time;
 }
-
 
 const basicHourDisplay = document.getElementById('hourly-display');
 

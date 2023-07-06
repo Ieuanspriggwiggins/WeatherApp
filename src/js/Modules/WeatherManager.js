@@ -7,7 +7,7 @@ let _locationObject;
 let _selectedWeatherObject;
 
 //Keeps track of the current temperature type - defaults as C when application opens
-let _currentTemperatureType = 'c';
+let _currentTemperatureType;
 
 const weatherFactory = (data) => {
     return {data};
