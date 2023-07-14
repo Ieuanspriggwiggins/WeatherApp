@@ -42,9 +42,6 @@ temperatureChangeBtn.addEventListener('click', () => {
     createWeatherUI();
 });
 
-//Tab container for the tabs
-const tabDayContainer = document.getElementById('day-selection-container');
-
 //When submit button is pressed
 _locationSubmitBtn.addEventListener('click', submitLocation);
 
@@ -117,12 +114,14 @@ function updateCurrentDate() {
     let newDate = new Date(tempDate * 1000);
 
     // let day = newDate.getDate();
+    let dayName = newDate.getDay();
+    let dayString = WeatherManager.getDayArray()[dayName];
 
     let day = String(newDate.getDate()).length === 1 ? '0' + newDate.getDate() : newDate.getDate();
     let month = String(newDate.getMonth()).length === 1 ? '0' + (newDate.getMonth() + 1) : (newDate.getMonth() + 1);
     const year = newDate.getFullYear();
 
-    date = day + '/' + month + '/' + year;
+    date = dayString + ', ' +  day + '/' + month + '/' + year;
 
 
     changeDayCurrent.innerText = date;
