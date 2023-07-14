@@ -113,7 +113,6 @@ function updateCurrentDate() {
     let weatherObj = WeatherManager.getSelectedWeatherObject();
     let date;
 
-
     const tempDate = weatherObj.data.date_epoch;
     let newDate = new Date(tempDate * 1000);
 
@@ -160,14 +159,9 @@ function updateQuickInfo(data, locationObj) {
     const weatherConditionText = data.day.condition.text;
 
     const timezoneId = locationObj.tz_id;
-    const localTime = new Date(new Date().toLocaleString('en-GB', {timeZone: timezoneId}));
-    let timeHours = String(localTime.getHours());
-    let timeMinutes = String(localTime.getMinutes());
-    if(timeMinutes.length === 1){
-        timeMinutes = '0' + timeMinutes;
-    }
+    const localTime = new Date().toLocaleTimeString('en-GB', {timeZone: timezoneId});
 
-    let time = timeHours + ':' +  timeMinutes;
+    let time = localTime.substring(0,5);
 
     quickInfoCityDisplay.innerHTML = cityName;
     quickInfoCountryDisplay.innerHTML = countryName;
@@ -187,13 +181,12 @@ function updateHourlyDisplay(data, locationData) {
     let hourlyData = data.hour;
     let timezoneId = locationData.tz_id;
 
-    let localTime = new Date(new Date().toLocaleString('en-GB', {timeZone: timezoneId}));
+    let localTime= new Date().toLocaleTimeString('en-GB', {timeZone: timezoneId});
 
-    let currentHour = localTime.getHours();
+    let currentHour = localTime[0] + localTime[1];
 
     for(let hour in hourlyData){
         let element;
-
         if(Number(WeatherManager.getSelectedWeatherObjectId()) === 0){
             if(Number(hour) === Number(currentHour)){
                 element = ElementGenerator.generateBasicHour(true, hourlyData[hour], hour);
