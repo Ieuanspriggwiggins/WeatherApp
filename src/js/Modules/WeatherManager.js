@@ -20,7 +20,7 @@ const weatherFactory = (data) => {
  * @returns {Promise<any>}
  */
 const fetchWeatherData = async (locationName) => {
-    const request = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${_weatherKey}&q=${locationName}&alerts=yes&days=5&aqi=yes`);
+    const request = await fetch(``);
     await request.json().then((response) => {
         createWeatherObjects(response);
     });
