@@ -1,6 +1,11 @@
 exports.handler = async function (event, context) {
 
-    'use strict'
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+    };
+
 
     const value = process.env.WEATHER_API_KEY;
 
@@ -11,6 +16,7 @@ exports.handler = async function (event, context) {
 
     return {
         statusCode: 200,
+        headers,
         body: JSON.stringify({'response': await request.json().then((response) => {return response})}),
     };
 };
