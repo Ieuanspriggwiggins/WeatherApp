@@ -1,7 +1,7 @@
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-const _weatherKey = '522d203393ae44c29f695112230307';
+const _weatherKey = '';
 let _weatherObjects = {};
 let _locationObject;
 let _selectedWeatherObject;
