@@ -7,7 +7,7 @@ exports.handler = async function (event, context) {
     await request.json().then((response) => {
         return {
             statusCode: 200,
-            body: JSON.stringify(response),
+            body: JSON.stringify({'response': response}),
         };
     })
 };
