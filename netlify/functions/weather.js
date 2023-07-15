@@ -1,4 +1,7 @@
 exports.handler = async function (event, context) {
+
+    'use strict'
+
     const value = process.env.WEATHER_API_KEY;
 
     const location = event.queryStringParameters.location;

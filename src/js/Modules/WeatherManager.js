@@ -20,8 +20,9 @@ const weatherFactory = (data) => {
  * @returns {Promise<any>}
  */
 const fetchWeatherData = async (locationName) => {
-    const request = await fetch(``);
+    const request = await fetch(`https://weather.ieuan.dev/.netlify/functions/weather?location=${locationName}`);
     await request.json().then((response) => {
+        console.log(response);
         createWeatherObjects(response);
     });
 }
