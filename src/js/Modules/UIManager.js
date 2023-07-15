@@ -170,13 +170,16 @@ function updateQuickInfo(data, locationObj) {
 }
 
 const basicHourDisplay = document.getElementById('hourly-display');
+const detailedHourDisplay = document.getElementById('detailed-hourly-container');
 
 /**
  * Updates the hourly sections on the page.
  * @param data
+ * @param locationData
  */
 function updateHourlyDisplay(data, locationData) {
     basicHourDisplay.innerHTML = ''; //Clear the display
+    detailedHourDisplay.innerHTML = '';
     let hourlyData = data.hour;
     let timezoneId = locationData.tz_id;
 
@@ -186,18 +189,23 @@ function updateHourlyDisplay(data, locationData) {
 
     for(let hour in hourlyData){
         let element;
+        let detailedElement;
         if(Number(WeatherManager.getSelectedWeatherObjectId()) === 0){
             if(Number(hour) === Number(currentHour)){
-                element = ElementGenerator.generateBasicHour(true, hourlyData[hour], hour);
+                element = ElementGenerator.generateBasicHour(hourlyData[hour], hour);
+                detailedElement = ElementGenerator.generateDetailedHour(hourlyData[hour], hour);
             }
             else if(Number(hour) > Number(currentHour)){
-                element = ElementGenerator.generateBasicHour(false, hourlyData[hour], hour);
+                element = ElementGenerator.generateBasicHour(hourlyData[hour], hour);
+                detailedElement = ElementGenerator.generateDetailedHour(hourlyData[hour], hour);
             }
         }else{
-            element = ElementGenerator.generateBasicHour(false, hourlyData[hour], hour);
+            element = ElementGenerator.generateBasicHour(hourlyData[hour], hour);
+            detailedElement = ElementGenerator.generateDetailedHour(hourlyData[hour], hour);
         }
         if(element){
             basicHourDisplay.appendChild(element);
+            detailedHourDisplay.appendChild(detailedElement);
         }
     }
 }
